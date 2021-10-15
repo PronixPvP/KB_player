@@ -19,7 +19,7 @@ class Main extends PluginBase implements PronixPvP
       $entity = $event->getEntity();
       if($damager instanceof Player){
         $event->setKnockback(0.45);
-	$event->setMotionNull(new Vector3(null, 0.5, null));
+	$entity->setMotionNull(new Vector3(null, 0.5, null));
         $entity->motionY += 1;
       }
     }
