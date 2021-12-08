@@ -2,26 +2,34 @@
 
 namespace SkordertYT;
 
-use pocketmine\event\Listener as PronixPvP;
+use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\Player;
 use pocketmine\math\Vector3;
 
-class Main extends PluginBase implements PronixPvP
+class Main extends PluginBase implements Listener
 {
-  
-  public function onStartKb(EntityDamageEvent $event)
+
+  public function onDamage(EntityDamageEvent $event)
   {
     if($e instanceof EntityDamageByEntityEvent){
       $damager = $event->getDamager();
       $entity = $event->getEntity();
-      if($damager instanceof Player){
-        $event->setKnockback(0.45);
-	$entity->setMotionNull(new Vector3(null, 0.5, null));
-//        $entity->motionY += 1;
+      if(!$entity instanceof Player)return;
+      if(!$damager instanceof Player)return;
+      $f = sqrt($entity->getX() * $entity->getX());
+      if($f <= 0){
+	return;
       }
+      $motion = clone $player->getMotion();
+      $motion->y /= 2;
+      $motion->y += $f * 0.392;
+      if($motion->y > 0.392){
+          $motion->y = 0.392;
+      }
+      $player->setMotion($motion);
     }
   }
 }
