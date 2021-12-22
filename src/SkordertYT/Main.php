@@ -23,13 +23,13 @@ class Main extends PluginBase implements Listener
       if($f <= 0){
 	return;
       }
-      $motion = clone $player->getMotion();
+      $motion = clone $entity->getMotion();
       $motion->y /= 2;
       $motion->y += $f * 0.392;
       if($motion->y > 0.392){
           $motion->y = 0.392;
       }
-      $player->setMotion($motion);
+      $entity->setMotion($motion);
     }
   }
 }
