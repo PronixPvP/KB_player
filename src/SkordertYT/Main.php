@@ -19,7 +19,8 @@ class Main extends PluginBase implements Listener
       $entity = $event->getEntity();
       if(!$entity instanceof Player)return;
       if(!$damager instanceof Player)return;
-      $f = sqrt($entity->getX() * $entity->getX());
+      //$f = sqrt($entity->getX() * $entity->getX());
+      $f = 58;
       if($f <= 0){
 	return;
       }
